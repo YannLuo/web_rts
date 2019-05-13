@@ -1,0 +1,2 @@
+import pandas
+pandas.test()

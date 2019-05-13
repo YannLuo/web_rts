@@ -1,0 +1,2 @@
+import pydl
+pydl.test()

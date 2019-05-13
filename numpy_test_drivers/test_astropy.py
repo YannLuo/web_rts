@@ -1,0 +1,2 @@
+import astropy
+astropy.test()

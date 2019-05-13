@@ -1,0 +1,2 @@
+import stginga
+stginga.test()

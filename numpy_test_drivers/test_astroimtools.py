@@ -1,0 +1,2 @@
+import astroimtools
+astroimtools.test()

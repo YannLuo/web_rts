@@ -1,0 +1,2 @@
+import gammapy
+gammapy.test()

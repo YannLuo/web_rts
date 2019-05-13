@@ -1,0 +1,2 @@
+import synphot
+synphot.test()

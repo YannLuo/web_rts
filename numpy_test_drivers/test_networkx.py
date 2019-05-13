@@ -1,0 +1,2 @@
+import networkx
+networkx.test()

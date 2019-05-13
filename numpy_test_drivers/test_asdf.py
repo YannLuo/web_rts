@@ -1,0 +1,2 @@
+import asdf
+asdf.test()

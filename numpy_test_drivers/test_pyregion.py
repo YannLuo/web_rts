@@ -1,0 +1,2 @@
+import pyregion
+pyregion.test()

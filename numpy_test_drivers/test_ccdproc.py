@@ -1,0 +1,2 @@
+import ccdproc
+ccdproc.test()

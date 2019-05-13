@@ -1,0 +1,2 @@
+import pytest
+photutils.test()
