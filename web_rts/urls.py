@@ -19,5 +19,6 @@ from rts import views as rts_views
 
 urlpatterns = [
     path(r"admin/", admin.site.urls),
-    path(r"rts/", rts_views.index)
+    path(r"rts/", rts_views.index),
+    re_path(r"$^", rts_views.index)
 ]

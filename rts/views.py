@@ -5,6 +5,7 @@ from .control import process
 
 def index(request):
     if request.method == "POST":
-        return HttpResponse(process(request))
+        process(request)
+        return "ok"
     else:
         return HttpResponse("Hello world!")

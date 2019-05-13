@@ -59,4 +59,5 @@ def process(request):
     diff_content = get_diff(new_commit)
     modified_functions = get_modified_functions(diff_content)
     relevant_downstreams = select_relevant_downstreams(modified_functions)
-    return "\n".join(relevant_downstreams)
+    run_regression(relevant_downstreams, new_commit)
+    return "ok"

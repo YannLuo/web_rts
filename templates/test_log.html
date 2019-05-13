@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test log</title>
+    <script>
+        function readTextFile(file) {
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            var content = "";
+            rawFile.onreadystatechange = function () {
+                if(rawFile.readyState === 4) {
+                    if(rawFile.status === 200 || rawFile.status == 0) {
+                        content = rawFile.responseText;
+                    }
+                }
+            };
+            rawFile.send(null);
+            return content;
+        }
+
+        window.onload = function() {
+            var dispDiv = document.getElementById("display");
+            var timer = setInterval(function() {
+                dispDiv.innerHTML = readTextFile("{{ log_path }}").split("\n").join("<br/>");
+            }, 2000);
+        };
+		</script>
+</head>
+<body>
+    <div>{{ request.GET }}</div>
+    <div id="display"></div>
+</body>
+</html>
