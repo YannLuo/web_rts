@@ -29,6 +29,7 @@ def run_regression(relevant_downstreams, sha):
         os.makedirs(os.path.join("test_logs", "numpy", sha))
     except:
         pass
+    downstream_test_drivers = ["test_astropy.py"]
     for downstream_test_driver in downstream_test_drivers:
         downstream_name = "_".join(downstream_test_driver.split('.')[0].split("_")[1:])
         if downstream_name not in relevant_downstreams:
@@ -43,9 +44,9 @@ def run_regression(relevant_downstreams, sha):
             continue
         if downstream_name == "indi":
             continue
-        pyfile_path = os.path.join("test_numpy", downstream_test_driver)
+        pyfile_path = os.path.join("numpy_test_drivers", downstream_test_driver)
         with open(os.path.join("test_logs", "numpy", sha,
-                               "test_log_" + downstream_name + ".txt"), mode="w") as wf:
+                               "test_log_" + downstream_name + ".log"), mode="w") as wf:
             p = subprocess.Popen(["python3", pyfile_path], stdout=wf, stderr=wf)
             try:
                 p.communicate(timeout=12600)
@@ -53,8 +54,8 @@ def run_regression(relevant_downstreams, sha):
                 p.kill()
 
 
-def process(request):
-    body = str(request.body, encoding="utf-8")
+def process(body):
+    body = str(body, encoding="utf-8")
     new_commit = get_new_commit(body)
     diff_content = get_diff(new_commit)
     modified_functions = get_modified_functions(diff_content)

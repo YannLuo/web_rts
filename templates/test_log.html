@@ -3,32 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Test log</title>
-    <script>
-        function readTextFile(file) {
-            var rawFile = new XMLHttpRequest();
-            rawFile.open("GET", file, false);
-            var content = "";
-            rawFile.onreadystatechange = function () {
-                if(rawFile.readyState === 4) {
-                    if(rawFile.status === 200 || rawFile.status == 0) {
-                        content = rawFile.responseText;
-                    }
-                }
-            };
-            rawFile.send(null);
-            return content;
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        function fetch_log(log_path) {
+            $.ajax({
+                type: "post",
+                url: log_path
+            }).done(function(data) {
+                $("#display").html(data.log);
+            });
         }
 
-        window.onload = function() {
-            var dispDiv = document.getElementById("display");
-            var timer = setInterval(function() {
-                dispDiv.innerHTML = readTextFile("{{ log_path }}").split("\n").join("<br/>");
-            }, 2000);
-        };
-		</script>
+        $(document).ready(function() {
+            setInterval("fetch_log("+"\"{{ log_path }}\""+")", 2000);
+        });
+    </script>
 </head>
 <body>
-    <div>{{ request.GET }}</div>
-    <div id="display"></div>
+    <div id="display">
+        {% for line in log %}
+        {{ line }} <br/>
+        {% endfor %}
+    </div>
 </body>
 </html>

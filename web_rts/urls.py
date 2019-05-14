@@ -20,5 +20,6 @@ from rts import views as rts_views
 urlpatterns = [
     path(r"admin/", admin.site.urls),
     path(r"rts/", rts_views.index),
+    re_path(r"results/[a-zA-Z\_0-9]+/[0-9a-f]{7}/[a-zA-Z\_0-9]+/", rts_views.show_result),
     re_path(r"$^", rts_views.index)
 ]
