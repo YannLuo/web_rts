@@ -45,8 +45,7 @@ def run_regression(relevant_downstreams, sha):
         if downstream_name == "indi":
             continue
         pyfile_path = os.path.join("numpy_test_drivers", downstream_test_driver)
-        with open(os.path.join("test_logs", "numpy", sha,
-                               "test_log_" + downstream_name + ".log"), mode="w") as wf:
+        with open(os.path.join("test_logs", "numpy", sha, downstream_name + ".log"), mode="w") as wf:
             p = subprocess.Popen(["python3", pyfile_path], stdout=wf, stderr=wf)
             try:
                 p.communicate(timeout=12600)
